@@ -32,39 +32,7 @@ jobs:
       env:
         BASE_PATH: /
 
-    - name: Upload Production Website
-      uses: actions/upload-artifact@v3
-      with:
-        name: production_website
-        path: ${{ env.BUILD_PATH }}
 
-    - name: Upload stats
-      uses: actions/upload-artifact@v3
-      with:
-        name: stats
-        path: ${{ github.workspace }}/build_stats
-
-
-    - name: Deploy website
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-
-        publish_branch: master
-        publish_dir: ./build
-
-
-  deploy_production:
-
-    name: Production deployment 🚀🌐
-  
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v3
-      with:
-          name: production_website
-          path: ${{ env.BUILD_PATH }}
 
     - name: Deploy website
       uses: peaceiris/actions-gh-pages@v3
@@ -72,4 +40,5 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: gh-pages
         publish_dir: ./build
+
        
